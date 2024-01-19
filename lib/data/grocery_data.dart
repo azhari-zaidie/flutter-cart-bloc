@@ -6,7 +6,7 @@ class GroceryData {
       'description': 'Fresh and juicy apple',
       'price': 2.49,
       'imageUrl':
-          'https://www.collinsdictionary.com/images/thumb/apple_158989157_250.jpg',
+          'https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Red_Apple.jpg/847px-Red_Apple.jpg',
     },
     {
       'id': 2,

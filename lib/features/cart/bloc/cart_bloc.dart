@@ -24,6 +24,7 @@ class CartBloc extends Bloc<CartEvent, CartState> {
       CartRemoveFromCartEvent event, Emitter<CartState> emit) {
     print('clicked remove');
     cartItems.remove(event.product);
+    emit(RemoveCartActionState());
     emit(CartSuccessState(cartItems: cartItems));
     //need to emit cart success state because it will refresh the state
   }

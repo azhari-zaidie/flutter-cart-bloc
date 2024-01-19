@@ -32,6 +32,11 @@ class _WishListState extends State<WishList> {
         buildWhen: (previous, current) => current is! WishlistActionState,
         listener: (context, state) {
           // TODO: implement listener
+          if (state is RemoveWishlistActionState) {
+            ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+              content: Text('Item Remove from wishlisting'),
+            ));
+          }
         },
         builder: (context, state) {
           switch (state.runtimeType) {
