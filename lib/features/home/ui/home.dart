@@ -1,3 +1,4 @@
+import 'package:bloc_1/data/wishlist_items.dart';
 import 'package:bloc_1/features/cart/ui/cart.dart';
 import 'package:bloc_1/features/home/bloc/home_bloc.dart';
 import 'package:bloc_1/features/home/ui/product_tile_widget.dart';
@@ -77,12 +78,16 @@ class _HomeState extends State<Home> {
               body: ListView.builder(
                   itemCount: successState.product.length,
                   itemBuilder: (context, index) {
+                    final wishlistChecked =
+                        wishlistItems.contains(successState.product[index]);
                     return ProductTileWidget(
                       productDataModel: successState.product[index],
                       homeBloc: homeBloc,
+                      wishlistChecked: wishlistChecked,
                     );
                   }),
             );
+
           // break;
           case HomeErrorState:
             return const Scaffold(

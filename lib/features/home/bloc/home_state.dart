@@ -16,7 +16,20 @@ final class HomeLoadedSuccessState extends HomeState {
   });
 }
 
+final class HomeUpdatedSuccessState extends HomeState {
+  final List<ProductDataModel> product;
+  HomeUpdatedSuccessState({
+    required this.product,
+  });
+}
+
 final class HomeErrorState extends HomeState {}
+
+final class HomeCheckedState extends HomeState {
+  final List<ProductDataModel> product;
+
+  HomeCheckedState({required this.product});
+}
 
 final class HomeNavigateToWishlistPageActionState extends HomeActionState {}
 

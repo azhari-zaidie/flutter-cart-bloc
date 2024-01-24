@@ -6,8 +6,12 @@ import '../bloc/home_bloc.dart';
 class ProductTileWidget extends StatelessWidget {
   final ProductDataModel productDataModel;
   final HomeBloc homeBloc;
+  final bool wishlistChecked;
   const ProductTileWidget(
-      {super.key, required this.productDataModel, required this.homeBloc});
+      {super.key,
+      required this.productDataModel,
+      required this.homeBloc,
+      required this.wishlistChecked});
 
   @override
   Widget build(BuildContext context) {
@@ -65,7 +69,9 @@ class ProductTileWidget extends StatelessWidget {
                           clickedProduct: productDataModel));
                       // homeBloc.add(HometWishListButtonNavigateEvent());
                     },
-                    icon: const Icon(Icons.favorite_border_outlined),
+                    icon: Icon(wishlistChecked
+                        ? Icons.favorite
+                        : Icons.favorite_border_outlined),
                   ),
                   IconButton(
                     onPressed: () {
