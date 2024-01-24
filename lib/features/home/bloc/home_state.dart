@@ -35,6 +35,12 @@ final class HomeNavigateToWishlistPageActionState extends HomeActionState {}
 
 final class HomeNavigateToCartPageActionState extends HomeActionState {}
 
+final class HomeNavigateToProductPageActionState extends HomeActionState {
+  final ProductDataModel product;
+
+  HomeNavigateToProductPageActionState({required this.product});
+}
+
 final class HomeProductItemWishlistActionState extends HomeActionState {}
 
 final class HomeProductItemCartActionState extends HomeActionState {}

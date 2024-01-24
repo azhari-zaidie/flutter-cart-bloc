@@ -27,13 +27,19 @@ class ProductTileWidget extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Container(
-            height: 200,
-            width: double.maxFinite,
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                fit: BoxFit.cover,
-                image: NetworkImage(productDataModel.imageUrl),
+          GestureDetector(
+            onTap: () {
+              homeBloc.add(HomeProductButtonNagivateEvent(
+                  clickedProduct: productDataModel));
+            },
+            child: Container(
+              height: 200,
+              width: double.maxFinite,
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  fit: BoxFit.cover,
+                  image: NetworkImage(productDataModel.imageUrl),
+                ),
               ),
             ),
           ),
@@ -42,7 +48,7 @@ class ProductTileWidget extends StatelessWidget {
           ),
           Text(
             productDataModel.name,
-            style: TextStyle(
+            style: const TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.bold,
             ),
@@ -56,7 +62,7 @@ class ProductTileWidget extends StatelessWidget {
             children: [
               Text(
                 'RM ${productDataModel.price.toString()}',
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
                 ),

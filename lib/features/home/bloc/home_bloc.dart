@@ -18,11 +18,13 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     on<HometWishListButtonNavigateEvent>(hometWishListButtonNavigateEvent);
     on<HometCartButtonNavigateEvent>(hometCartButtonNavigateEvent);
     on<HomeInitialEvent>(homeInitialEvent);
+    on<HomeProductButtonNagivateEvent>(homeProductButtonNagivateEvent);
   }
+
   FutureOr<void> homeInitialEvent(
       HomeInitialEvent event, Emitter<HomeState> emit) async {
     emit(HomeLoadingState());
-
+    // await Future.delayed(Duration(seconds: 3));
     List<ProductDataModel> productList = GroceryData.groceryProducts
         .map(
           (e) => ProductDataModel(
@@ -36,22 +38,6 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
         .toList();
     emit(HomeLoadedSuccessState(product: productList));
   }
-
-  // Stream<HomeCheckedState> mapEventToState(HomeEvent event) async* {
-  //   if (event is HometWishListButtonNavigateEvent) {
-  //     final updatedProducts = state..map((product) {
-  //       if (product.id == event.productId) {
-  //         // Toggle the favorite status for the selected product
-  //         return product.copyWith(isFavorite: !product.isFavorite);
-  //       } else {
-  //         return product;
-  //       }
-  //     }).toList();
-
-  //     // Emit the updated state
-  //     yield FavoriteUpdatedState(products: updatedProducts);
-  //   }
-  // }
 
   FutureOr<void> homeProductWishListButtonClickedEvent(
       HomeProductWishListButtonClickedEvent event, Emitter<HomeState> emit) {
@@ -100,5 +86,11 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     final result = wishlistItems.contains(products);
 
     return result;
+  }
+
+  FutureOr<void> homeProductButtonNagivateEvent(
+      HomeProductButtonNagivateEvent event, Emitter<HomeState> emit) {
+    print('product navigate');
+    emit(HomeNavigateToProductPageActionState(product: event.clickedProduct));
   }
 }

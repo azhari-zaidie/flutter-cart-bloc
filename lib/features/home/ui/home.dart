@@ -1,7 +1,9 @@
 import 'package:bloc_1/data/wishlist_items.dart';
 import 'package:bloc_1/features/cart/ui/cart.dart';
 import 'package:bloc_1/features/home/bloc/home_bloc.dart';
+import 'package:bloc_1/features/home/models/home_product_data.dart';
 import 'package:bloc_1/features/home/ui/product_tile_widget.dart';
+import 'package:bloc_1/features/item/ui/product.dart';
 import 'package:bloc_1/features/wishlist/ui/wishlist.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
@@ -29,7 +31,6 @@ class _HomeState extends State<Home> {
       listenWhen: (previous, current) => current is HomeActionState,
       buildWhen: (previous, current) => current is! HomeActionState,
       listener: (context, state) {
-        // TODO: implement listener
         if (state is HomeNavigateToCartPageActionState) {
           Navigator.push(
               context, MaterialPageRoute(builder: (context) => const Cart()));
@@ -44,6 +45,12 @@ class _HomeState extends State<Home> {
           ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
             content: Text('Item Wishlisted'),
           ));
+        } else if (state is HomeNavigateToProductPageActionState) {
+          //state = HomeNavigateToProductPageActionState
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => Product(product: state.product)));
         }
       },
       builder: (context, state) {
